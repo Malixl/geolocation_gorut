@@ -68,7 +68,7 @@ function DataSpasial() {
         {showPerbatasanKab && (
           <GeoJSON
             data={PerbatasanKab}
-            style={() => ({ color: 'gray', weight: 2, opacity: 0.3 })}
+            style={() => ({ color: 'blue', weight: 2, opacity: 0.3 })}
           />
         )}
         {showPerbatasanKec && (

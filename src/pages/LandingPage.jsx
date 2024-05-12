@@ -1,8 +1,10 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import { HiMapPin } from 'react-icons/hi2';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function LandingPage() {
+  const navigate = useNavigate();
   return (
     <main className="">
 
@@ -20,10 +22,9 @@ function LandingPage() {
               Informasi Geografis Pemetaan Lahan Pertanian Kabupaten Gorontalo Utara
             </p>
             <div className="flex">
-              <NavLink
-                href="asdas"
+              <button
                 className="inline-flex  items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-full bg-color-primary-500 hover:bg-color-primary-600"
-                to="/DataSpasial"
+                onClick={() => navigate('/dataspasial')}
               >
                 Data Spasial
                 <svg
@@ -38,14 +39,14 @@ function LandingPage() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </NavLink>
-              <NavLink
+              </button>
+              <button
                 href="asdas"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-full hover:bg-color-danger-600 bg-color-danger-500"
-                to="/DataTabular"
+                onClick={() => navigate('/datatabular')}
               >
                 Data Tabular
-              </NavLink>
+              </button>
             </div>
           </div>
           <div className=" lg:mt-0 lg:col-span-6 lg:flex items-center justify-center relative">

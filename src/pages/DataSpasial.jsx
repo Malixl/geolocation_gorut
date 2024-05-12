@@ -1,10 +1,10 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import {
   MapContainer, TileLayer, Marker, Popup, GeoJSON,
 } from 'react-leaflet';
 import JaringanIri from '../geojson/jaringanIri.json';
+import PerbatasanKab from '../geojson/perbatasanKabupaten.json';
+import PerbatasanKec from '../geojson/perbatasanKecamatan.json';
 import 'leaflet/dist/leaflet.css';
 
 const center = [0.8701328918542846, 122.75682938246875];
@@ -19,16 +19,26 @@ function DataSpasial() {
 
   const jaringanFeatures = features.map((feature, index) => (
     <GeoJSON
-      key={index}
+      key={index.id}
       data={feature}
       style={() => ({ color: getRandomColor(), weight: 2, opacity: 1 })}
     />
   ));
 
   const [showJaringanIri, setShowJaringanIri] = useState(false);
+  const [showPerbatasanKab, setShowPerbatasanKab] = useState(true);
+  const [showPerbatasanKec, setShowPerbatasanKec] = useState(true);
 
   const toggleJaringanIri = () => {
     setShowJaringanIri(!showJaringanIri);
+  };
+
+  const togglePerbatasanKab = () => {
+    setShowPerbatasanKab(!showPerbatasanKab);
+  };
+
+  const togglePerbatasanKec = () => {
+    setShowPerbatasanKec(!showPerbatasanKec);
   };
 
   return (
@@ -55,20 +65,51 @@ function DataSpasial() {
         {showJaringanIri && (
           jaringanFeatures
         )}
+        {showPerbatasanKab && (
+          <GeoJSON
+            data={PerbatasanKab}
+            style={() => ({ color: 'blue', weight: 2, opacity: 0.3 })}
+          />
+        )}
+        {showPerbatasanKec && (
+          <GeoJSON
+            data={PerbatasanKec}
+            style={() => ({ color: 'red', weight: 2, opacity: 0.3 })}
+          />
+        )}
       </MapContainer>
       <aside className="bg-white h-screen w-80">
         <p className="text-center p-4 font-bold text-xl">
           WebGIS Gorut
         </p>
-        <div className="list pl-4 gap-3 flex">
-          <input className="" type="checkbox" name="" id="" />
-          <label htmlFor="">Batas Wilayah</label>
+        <div className="flex flex-col pl-4 mb-1">
+          <div className="flex gap-3">
+            <input
+              type="checkbox"
+              name="PerbatasanKabCheckbox"
+              id="PerbatasanKabCheckbox"
+              checked={showPerbatasanKab}
+              onChange={togglePerbatasanKab}
+            />
+            <label htmlFor="PerbatasanKabCheckbox">Batas Kabupaten</label>
+          </div>
+          <div className="flex gap-3">
+            <input
+              type="checkbox"
+              name="PerbatasanKecCheckbox"
+              id="PerbatasanKecCheckbox"
+              checked={showPerbatasanKec}
+              onChange={togglePerbatasanKec}
+            />
+            <label htmlFor="PerbatasanKecCheckbox">Batas Kecamatan</label>
+          </div>
         </div>
-        <div className="list flex pl-10 gap-3">
+        <div className="flex pl-10 gap-3">
           <input
             type="checkbox"
             name="jaringanIriCheckbox"
             id="jaringanIriCheckbox"
+            checked={showJaringanIri}
             onChange={toggleJaringanIri}
           />
           <label htmlFor="jaringanIriCheckbox">Jaringan Irigasi</label>

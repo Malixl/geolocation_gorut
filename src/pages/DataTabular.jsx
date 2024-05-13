@@ -24,7 +24,7 @@ function DataTabular() {
           webgis lahan pertanian
         </h1>
         <h2 className="my-2 text-center text-lg font-bold uppercase">
-          dinas pertanian kabupaten gorontalo
+          dinas pertanian kabupaten gorontalo utara
         </h2>
         <Table data={features} />
         <button

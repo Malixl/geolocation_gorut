@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   MapContainer, TileLayer, Marker, Popup, GeoJSON,
 } from 'react-leaflet';
-import JaringanIri from '../geojson/jaringanIri.json';
+import JaringanIri from '../geojson/dataSawah.json';
 import PerbatasanKab from '../geojson/perbatasanKabupaten.json';
 import PerbatasanKec from '../geojson/perbatasanKecamatan.json';
 import 'leaflet/dist/leaflet.css';

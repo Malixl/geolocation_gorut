@@ -2,17 +2,17 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Table from '../components/Table';
-import useGeoJSON from '../hooks/useGeoJson';
+import dataSawah from '../geojson/dataSawah.json';
 
 function DataTabular() {
   const navigate = useNavigate();
-  const geoJSON = useGeoJSON('/jaringanIri.json');
+  const geoJSON = dataSawah;
   const features = useMemo(
     () => (geoJSON
       ? geoJSON.features
         .map((feature) => feature.properties)
         .filter(
-          (value, index, self) => self.findIndex((t) => t.REMARK === value.REMARK) === index,
+          (value, index, self) => self.findIndex((t) => t.DESA === value.DESA) === index,
         )
       : []),
     [geoJSON],

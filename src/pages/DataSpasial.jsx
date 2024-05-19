@@ -174,7 +174,7 @@ function DataSpasial() {
               </div>
             ))}
           </div> */}
-        <div className="wrapper mt-5 flex justify-center">
+        <div className="wrapper mt-5 flex items-center">
           <button onClick={() => navigate('/')} type="button" className="inline-flex  items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-full bg-blue-500">
             Kembali
             <svg

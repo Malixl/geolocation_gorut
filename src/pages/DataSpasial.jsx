@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   MapContainer, TileLayer, GeoJSON, LayersControl,
 } from 'react-leaflet';
@@ -14,6 +15,7 @@ function getRandomColor() {
 }
 
 function DataSpasial() {
+  const navigate = useNavigate();
   const { features } = dataSawah;
 
   const [desaFeatures, setDesaFeatures] = useState([]);
@@ -40,14 +42,14 @@ function DataSpasial() {
     setKecamatanFeatures(Array.from(kecamatanMap));
   }, [features]);
 
-  const toggleDesaVisibility = (desa) => {
-    setDesaFeatures((prevFeatures) => prevFeatures.map((feature) => {
-      if (feature[0] === desa) {
-        return [desa, { ...feature[1], visible: !feature[1].visible }];
-      }
-      return feature;
-    }));
-  };
+  // const toggleDesaVisibility = (desa) => {
+  //   setDesaFeatures((prevFeatures) => prevFeatures.map((feature) => {
+  //     if (feature[0] === desa) {
+  //       return [desa, { ...feature[1], visible: !feature[1].visible }];
+  //     }
+  //     return feature;
+  //   }));
+  // };
 
   const togglePerbatasanKab = () => {
     setShowPerbatasanKab(!showPerbatasanKab);
@@ -67,12 +69,11 @@ function DataSpasial() {
   };
 
   return (
-    <div className="map h-full flex">
+    <div className="map h-full flex isolate">
       <MapContainer
         center={center}
         zoom={10}
-        scrollWheelZoom={false}
-        className="flex-auto"
+        className="flex-auto -z-10"
       >
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="OpenStreetMap">
@@ -117,7 +118,7 @@ function DataSpasial() {
         {showPerbatasanKec && (
           <GeoJSON
             data={PerbatasanKec}
-            style={() => ({ color: 'black', weight: 2, opacity: 1 })}
+            style={() => ({ color: 'black', weight: 2, opacity: 3 })}
           />
         )}
       </MapContainer>
@@ -160,18 +161,35 @@ function DataSpasial() {
             </div>
           ))}
         </div>
-        <div className="pl-10 mb-1">
-          <h3>Desa</h3>
-          {desaFeatures.map(([desa, { visible, color }]) => (
-            <div key={`desa-checkbox-${desa}`} className="flex items-center gap-3">
-              <input
-                type="checkbox"
-                checked={visible}
-                onChange={() => toggleDesaVisibility(desa)}
+        {/* <div className="pl-10 mb-1">
+            <h3>Desa</h3>
+            {desaFeatures.map(([desa, { visible, color }]) => (
+              <div key={`desa-checkbox-${desa}`} className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  checked={visible}
+                  onChange={() => toggleDesaVisibility(desa)}
+                />
+                <label style={{ color }}>{desa}</label>
+              </div>
+            ))}
+          </div> */}
+        <div className="wrapper mt-5 flex justify-center">
+          <button onClick={() => navigate('/')} type="button" className="inline-flex  items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-full bg-blue-500">
+            Kembali
+            <svg
+              className="w-5 h-5 ml-2 -mr-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
               />
-              <label style={{ color }}>{desa}</label>
-            </div>
-          ))}
+            </svg>
+          </button>
         </div>
       </aside>
     </div>

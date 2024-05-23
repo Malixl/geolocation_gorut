@@ -10,3 +10,7 @@
     clip-path: polygon(85% 0, 100% 0, 100% 100%, 30% 100%);
   }
 }
+
+.text-stroke-white {
+  -webkit-text-stroke: 1px white;
+}

@@ -14,6 +14,7 @@ function LandingPage() {
           className="grid max-w-screen-xl min-h-screen px-8 py-8 mx-auto lg:gap-8 xl:gap-0 items-center justify-center lg:grid-cols-12 h-full"
         >
           <div className="mr-auto place-self-center lg:col-span-6">
+            <img src="/public/icon/landinglogo.png" className="w-1/5 mb-3" alt="" />
             <h1 className="max-w-2xl text-slate-900 mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-stroke-white">
               GIS Pemetaan Lahan Pertanian Kab.Gorut
             </h1>
@@ -72,6 +73,26 @@ function LandingPage() {
           </div>
         </div>
       </section>
+      <footer className="bg-gray-800 py-4 text-center text-white">
+        <div className="container mx-auto">
+          <p className="text-sm">
+            &copy; Mahasiswa Informatika Universitas Negeri Gorontalo
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+            |
+            {' '}
+            <a
+              href="https://github.com/LuckProduction/geolocation_gorut"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              GitHub
+            </a>
+          </p>
+        </div>
+      </footer>
     </main>
 
   );

@@ -4,6 +4,7 @@ import {
   MapContainer, TileLayer, GeoJSON, LayersControl,
 } from 'react-leaflet';
 import dataSawah from '../geojson/dataSawah.json';
+import JaringanIrigasi from '../geojson/jaringanIri.json';
 import PerbatasanKab from '../geojson/perbatasanKabupaten.json';
 import PerbatasanKec from '../geojson/perbatasanKecamatan.json';
 import 'leaflet/dist/leaflet.css';
@@ -17,6 +18,7 @@ function DataSpasial() {
   const [kecamatanFeatures, setKecamatanFeatures] = useState([]);
   const [showPerbatasanKab, setShowPerbatasanKab] = useState(true);
   const [showPerbatasanKec, setShowPerbatasanKec] = useState(true);
+  const [showJaringanIrigasi, setShowJaringanIrigasi] = useState(true);
 
   useEffect(() => {
     const kecamatanMap = new Map();
@@ -37,6 +39,10 @@ function DataSpasial() {
 
   const togglePerbatasanKec = () => {
     setShowPerbatasanKec(!showPerbatasanKec);
+  };
+
+  const toggleJaringanIrigasi = () => {
+    setShowJaringanIrigasi(!showJaringanIrigasi);
   };
 
   const toggleKecamatanVisibility = (kecamatan) => {
@@ -81,6 +87,12 @@ function DataSpasial() {
             />
           )
         ))}
+        {showJaringanIrigasi && (
+          <GeoJSON
+            data={JaringanIrigasi}
+            style={() => ({ color: 'blue', weight: 2, opacity: 1 })}
+          />
+        )}
         {showPerbatasanKab && (
           <GeoJSON
             data={PerbatasanKab}
@@ -98,7 +110,8 @@ function DataSpasial() {
         <p className="text-center p-4 font-bold text-xl">
           Lahan Pertanian Gorut
         </p>
-        <div className="flex flex-col pl-4 mb-1">
+        <div className="flex flex-col pl-10 mb-1">
+          <h3 className="font-bold">Batas Administarasi</h3>
           <div className="flex gap-3">
             <input
               type="checkbox"
@@ -121,7 +134,7 @@ function DataSpasial() {
           </div>
         </div>
         <div className="pl-10 mb-1">
-          <h3>Data Sawah</h3>
+          <h3 className="font-bold">Lahan Sawah</h3>
           {kecamatanFeatures.map(([kecamatan, { visible, color }]) => (
             <div key={`kecamatan-checkbox-${kecamatan}`} className="flex items-center gap-3">
               <input
@@ -132,6 +145,19 @@ function DataSpasial() {
               <label style={{ color }}>{kecamatan}</label>
             </div>
           ))}
+        </div>
+        <div className="flex flex-col pl-10 mb-1">
+          <h3 className="font-bold">Lahan Irigasi</h3>
+          <div className="flex gap-3">
+            <input
+              type="checkbox"
+              name="JaringanIrigasi"
+              id="JaringanIrigasi"
+              checked={showJaringanIrigasi}
+              onChange={toggleJaringanIrigasi}
+            />
+            <label htmlFor="Jaringan Irigasi">Jaringan Irigasi</label>
+          </div>
         </div>
         <div className="wrapper mt-5 flex justify-center">
           <button onClick={() => navigate('/')} type="button" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-full bg-blue-500">

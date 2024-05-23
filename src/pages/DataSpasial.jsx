@@ -10,46 +10,26 @@ import 'leaflet/dist/leaflet.css';
 
 const center = [0.8701328918542846, 122.75682938246875];
 
-function getRandomColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
 function DataSpasial() {
   const navigate = useNavigate();
   const { features } = dataSawah;
 
-  const [desaFeatures, setDesaFeatures] = useState([]);
   const [kecamatanFeatures, setKecamatanFeatures] = useState([]);
   const [showPerbatasanKab, setShowPerbatasanKab] = useState(true);
   const [showPerbatasanKec, setShowPerbatasanKec] = useState(true);
 
   useEffect(() => {
-    const desaMap = new Map();
     const kecamatanMap = new Map();
 
     features.forEach((feature) => {
-      const desa = feature.properties.DESA;
       const kecamatan = feature.properties.KECAMATAN;
-      if (!desaMap.has(desa)) {
-        desaMap.set(desa, { visible: false, color: getRandomColor() });
-      }
       if (!kecamatanMap.has(kecamatan)) {
-        kecamatanMap.set(kecamatan, { visible: false, color: getRandomColor() });
+        kecamatanMap.set(kecamatan, { visible: false, color: 'green' });
       }
     });
 
-    setDesaFeatures(Array.from(desaMap));
     setKecamatanFeatures(Array.from(kecamatanMap));
   }, [features]);
-
-  // const toggleDesaVisibility = (desa) => {
-  //   setDesaFeatures((prevFeatures) => prevFeatures.map((feature) => {
-  //     if (feature[0] === desa) {
-  //       return [desa, { ...feature[1], visible: !feature[1].visible }];
-  //     }
-  //     return feature;
-  //   }));
-  // };
 
   const togglePerbatasanKab = () => {
     setShowPerbatasanKab(!showPerbatasanKab);
@@ -73,6 +53,7 @@ function DataSpasial() {
       <MapContainer
         center={center}
         zoom={10}
+        minZoom={10}
         className="flex-auto -z-10"
       >
         <LayersControl position="topright">
@@ -81,7 +62,7 @@ function DataSpasial() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer checked={false} name="Satellite View">
+          <LayersControl.BaseLayer name="Satellite View">
             <TileLayer
               url="https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.{ext}"
               minZoom={0}
@@ -91,15 +72,6 @@ function DataSpasial() {
             />
           </LayersControl.BaseLayer>
         </LayersControl>
-        {desaFeatures.map(([desa, { visible, color }]) => (
-          visible && (
-            <GeoJSON
-              key={`desa-${desa}`}
-              data={features.filter((feature) => feature.properties.DESA === desa)}
-              style={() => ({ color, weight: 2, opacity: 1 })}
-            />
-          )
-        ))}
         {kecamatanFeatures.map(([kecamatan, { visible, color }]) => (
           visible && (
             <GeoJSON
@@ -118,11 +90,11 @@ function DataSpasial() {
         {showPerbatasanKec && (
           <GeoJSON
             data={PerbatasanKec}
-            style={() => ({ color: 'black', weight: 2, opacity: 3 })}
+            style={() => ({ color: 'black', weight: 2, opacity: 1 })}
           />
         )}
       </MapContainer>
-      <aside className="bg-white h-screen w-80 overflow-y-auto">
+      <aside className="bg-white h-screen w-40 lg:w-80 overflow-y-auto">
         <p className="text-center p-4 font-bold text-xl">
           Lahan Pertanian Gorut
         </p>
@@ -149,7 +121,7 @@ function DataSpasial() {
           </div>
         </div>
         <div className="pl-10 mb-1">
-          <h3>Kecamatan</h3>
+          <h3>Data Sawah</h3>
           {kecamatanFeatures.map(([kecamatan, { visible, color }]) => (
             <div key={`kecamatan-checkbox-${kecamatan}`} className="flex items-center gap-3">
               <input
@@ -161,21 +133,8 @@ function DataSpasial() {
             </div>
           ))}
         </div>
-        {/* <div className="pl-10 mb-1">
-            <h3>Desa</h3>
-            {desaFeatures.map(([desa, { visible, color }]) => (
-              <div key={`desa-checkbox-${desa}`} className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  checked={visible}
-                  onChange={() => toggleDesaVisibility(desa)}
-                />
-                <label style={{ color }}>{desa}</label>
-              </div>
-            ))}
-          </div> */}
         <div className="wrapper mt-5 flex justify-center">
-          <button onClick={() => navigate('/')} type="button" className="inline-flex  items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-full bg-blue-500">
+          <button onClick={() => navigate('/')} type="button" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-full bg-blue-500">
             Kembali
             <svg
               className="w-5 h-5 ml-2 -mr-1"

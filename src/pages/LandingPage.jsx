@@ -16,8 +16,6 @@ function LandingPage() {
           <div className="mr-auto place-self-center lg:col-span-6">
             <img src="/public/hero/landinglogo.png" className="w-1/5 mb-3" alt="" />
             <h1 className="max-w-2xl text-slate-900 mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-stroke-white">
-            <img src="/public/hero/landinglogo.png" className="w-1/5 mb-3" alt="" />
-            <h1 className="max-w-2xl text-slate-900 mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
               GIS Pemetaan Lahan Pertanian Kab.Gorut
             </h1>
             <p className="max-w-2xl mb-6 font-light text-slate-300 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">

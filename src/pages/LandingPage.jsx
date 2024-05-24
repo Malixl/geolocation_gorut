@@ -5,24 +5,25 @@ import { useNavigate } from 'react-router-dom';
 
 function LandingPage() {
   const navigate = useNavigate();
-  return (
-    <main className="">
 
-      <section className="bg-white relative isolate">
+  return (
+    <main className="h-screen overflow-hidden flex flex-col justify-between">
+      <section className="bg-white relative isolate flex-1 overflow-hidden">
         <div className="backgorund-image -z-10 w-full h-full absolute" />
         <div
-          className="grid max-w-screen-xl min-h-screen px-8 py-8 mx-auto lg:gap-8 xl:gap-0 items-center justify-center lg:grid-cols-12 h-full"
+          className="grid max-w-screen-xl min-h-screen px-8 py-8 mx-auto lg:gap-8 xl:gap-0 items-center justify-center lg:grid-cols-12"
         >
+          {/* Konten di bagian kiri */}
           <div className="mr-auto place-self-center lg:col-span-6">
             <img src="/hero/landinglogo.png" className="w-1/5 mb-3" alt="" />
             <h1 className="max-w-2xl text-slate-900 mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-stroke-white">
               GIS Pemetaan Lahan Pertanian Kab.Gorut
             </h1>
             <p className="max-w-2xl mb-6 font-light text-slate-300 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              Sistem
-              Informasi Geografis Pemetaan Lahan Pertanian Kabupaten Gorontalo Utara
+              Sistem Informasi Geografis Pemetaan Lahan Pertanian Kabupaten Gorontalo Utara
             </p>
             <div className="flex">
+              {/* Tombol untuk navigasi ke halaman Data Spasial */}
               <button
                 className="inline-flex  items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-full bg-color-primary-500 hover:bg-color-primary-600"
                 onClick={() => navigate('/dataspasial')}
@@ -41,6 +42,7 @@ function LandingPage() {
                   />
                 </svg>
               </button>
+              {/* Tombol untuk navigasi ke halaman Data Tabular */}
               <button
                 href="asdas"
                 className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-full hover:bg-color-danger-600 bg-color-danger-500"
@@ -50,8 +52,10 @@ function LandingPage() {
               </button>
             </div>
           </div>
-          <div className="hidden lg:mt-0 lg:col-span-6 lg:flex items-center justify-center relative">
+          {/* Konten di bagian kanan */}
+          <div className="hidden lg:flex lg:mt-0 lg:col-span-6 lg:items-center lg:justify-center relative">
             <img src="/hero/heroimage.png" alt="heroimage" className="w-3/5 drop-shadow-lg" />
+            {/* Info luas Gorut */}
             <div className="flex items-center gap-x-2 ps-2 pe-8 py-2 bg-color-primary-500 rounded-full rounded-br-none absolute top-32 left-0">
               <div className="p-4 bg-white rounded-full">
                 <HiMapPin className="w-6 h-6 text-color-primary-500" />
@@ -61,6 +65,7 @@ function LandingPage() {
                 <span>1.676 km²</span>
               </div>
             </div>
+            {/* Info luas Sawah */}
             <div className="flex flex-row-reverse items-center gap-x-2 pe-2 ps-8 py-2 bg-color-warning-500 rounded-full rounded-bl-none absolute right-0">
               <div className="p-4 bg-white rounded-full">
                 <HiMapPin className="w-6 h-6 text-color-warning-500" />
@@ -73,10 +78,19 @@ function LandingPage() {
           </div>
         </div>
       </section>
-      <footer className="bg-gray-800 py-4 text-center text-white">
+      {/* Footer */}
+      <footer className="bg-gray-800 py-4 text-center text-white px-3">
         <div className="container mx-auto">
           <p className="text-sm">
-            &copy; Mahasiswa Informatika Universitas Negeri Gorontalo
+            &copy;
+            {/* Tombol untuk navigasi ke halaman Team */}
+            <button
+              href="asdas"
+              className="inline-flex items-center justify-center text-base text-center text-white"
+              onClick={() => navigate('/team')}
+            >
+              Mahasiswa Informatika Universitas Negeri Gorontalo
+            </button>
             {' '}
             {new Date().getFullYear()}
             {' '}
@@ -94,7 +108,6 @@ function LandingPage() {
         </div>
       </footer>
     </main>
-
   );
 }
 

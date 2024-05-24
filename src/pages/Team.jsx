@@ -7,27 +7,27 @@ const people = [
   {
     name: 'Abdul Malik Matoha',
     role: 'Frontend Developer',
-    imageUrl: '/public/teams/malik.png',
+    imageUrl: '/teams/malik.png',
   },
   {
     name: 'Moh. Rafiq Daud',
     role: 'Frontend Developer',
-    imageUrl: '/public/teams/rafiq.jpg',
+    imageUrl: '/teams/rafiq.jpg',
   },
   {
     name: 'Agung Saputra',
     role: 'Designer',
-    imageUrl: '/public/teams/agung.png',
+    imageUrl: '/teams/agung.png',
   },
   {
     name: 'Syifa nurafni hidayat',
     role: 'Copywriter',
-    imageUrl: '/public/teams/syifa.png',
+    imageUrl: '/teams/syifa.png',
   },
   {
     name: 'Cakra Yudha Pratama',
     role: 'Designer',
-    imageUrl: '/public/teams/cakra.png',
+    imageUrl: '/teams/cakra.png',
   },
 ];
 

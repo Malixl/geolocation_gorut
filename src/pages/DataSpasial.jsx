@@ -58,14 +58,14 @@ function DataSpasial() {
   };
   return (
     <div className="map h-full w-full flex isolate">
-      <div className="bg-white h-screen flex">
+      <aside className="bg-white h-screen flex absolute">
         <div className={` ${open ? 'w-72' : 'w-20 '} bg-dark-purple h-screen p-5 pt-8 relative duration-300`}>
           <div className="flex gap-x-4 items-center py-2">
             <img
               src="/hero/weblogo.png"
-              width="50"
+              width="35"
               className={`cursor-pointer duration-500 ${
-                open && 'rotate-[360deg]'
+                open
               }`}
             />
             <h1
@@ -155,12 +155,12 @@ function DataSpasial() {
           </div>
           )}
         </div>
-      </div>
+      </aside>
       <MapContainer
         center={center}
         zoom={10}
         minZoom={10}
-        className="flex-auto -z-10"
+        className="flex-auto -z-10 map-container ms-20"
       >
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="OpenStreetMap">

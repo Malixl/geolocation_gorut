@@ -14,3 +14,9 @@
 .text-stroke-white {
   -webkit-text-stroke: 1px white;
 }
+
+.map-container {
+  position: relative;
+  width: calc(100% - 20rem); /* Adjust the width to accommodate the sidebar */
+  height: 100vh; /* Adjust the height as needed */
+}

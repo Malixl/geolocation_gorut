@@ -7,29 +7,38 @@ import dataSawah from '../geojson/dataSawah.json';
 function DataTabular() {
   const navigate = useNavigate();
   const geoJSON = dataSawah;
+
   const features = useMemo(
     () => (geoJSON
       ? geoJSON.features
-        .map((feature) => feature.properties)
+        .map((feature) => ({
+          DESA: feature.properties.DESA,
+          KECAMATAN: feature.properties.KECAMATAN,
+          LUAS: feature.properties.LUAS_HA,
+          KETERANGAN: feature.properties.KETERANGAN,
+        }))
         .filter(
           (value, index, self) => self.findIndex((t) => t.DESA === value.DESA) === index,
         )
       : []),
     [geoJSON],
   );
+
   return (
     <section className="bg-color-primary-500 text-white">
       <div className="container mx-auto px-4 py-8 max-w-screen-lg flex flex-col gap-y-4 justify-center items-center min-h-screen">
         <h1 className="text-center text-3xl font-bold uppercase">
-          webgis lahan pertanian
+          WebGIS Lahan Pertanian
         </h1>
         <h2 className="my-2 text-center text-lg font-bold uppercase">
-          dinas pertanian kabupaten gorontalo utara
+          Dinas Pertanian Kabupaten Gorontalo Utara
         </h2>
-        <Table data={features} />
+        <div className="w-full">
+          <Table data={features} className="w-fit" />
+        </div>
         <button
           onClick={() => navigate('/')}
-          className="inline-flex  items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-color-primary-500 rounded-full bg-white"
+          className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-color-primary-500 rounded-full bg-white"
         >
           Kembali
           <svg

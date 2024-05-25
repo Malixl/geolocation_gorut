@@ -34,7 +34,7 @@ function DataTabular() {
           Dinas Pertanian Kabupaten Gorontalo Utara
         </h2>
         <div className="w-full">
-          <Table data={features} className="w-fit" />
+          <Table data={features} />
         </div>
         <button
           onClick={() => navigate('/')}
